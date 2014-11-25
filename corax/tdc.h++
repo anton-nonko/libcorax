@@ -5,6 +5,7 @@
 \defgroup tdc Type Dependent Constants
 \todo Write documentation.
 \todo Add all available operators support.
+\todo Allow non-TDC values operators.
 *////\{
 
 #pragma once
@@ -29,12 +30,23 @@ Legenda:
 
 // Unary operators and corresponding expression classes
 #define U \
+	((+, unary_plus_expr))\
+	((-, unary_minus_expr))\
+	((!, not_expr))\
 	((~, compl_expr))
 
 // Binary operators and corresponding expression classes
 #define B \
+	((+, plus_expr))\
+	((-, minus_expr))\
+	((*, mul_expr))\
+	((/, div_expr))\
+	((%, mod_expr))\
+	((&, bitand_expr))\
 	((|, bitor_expr))\
-	((&, bitand_expr))
+	((^, bitxor_expr))\
+	((<<, left_shift_expr))\
+	((>>, right_shift_expr))
 
 #define U_E_F(o, e) template<class> class e
 
@@ -49,19 +61,14 @@ Legenda:
 
 #define B_E(o, e)                                                              \
 	template<class T, class V> struct e : public mixin<e<T, V>>{                 \
-		constexpr e() = default;                                                   \
-		                                                                           \
-		constexpr e(V) {};                                                         \
-		                                                                           \
 		template<class W> constexpr operator W() const {return W{T{}} o W{V{}};};  \
 	}
 
 #define B_O(o, e)                                                              \
 	template<class V>                                                            \
-	constexpr                                                                    \
-	typename conditional<is_base_of<mixin<V>, V>::value, e<T, V>, V>::type       \
+	constexpr typename enable_if<is_base_of<mixin<V>, V>::value, e<T, V>>::type  \
 	operator o(V v) {                                                            \
-		return v;                                                                  \
+		return {};                                                                 \
 	}
 
 #define ITOR(r, macro, args) macro args;
@@ -80,14 +87,12 @@ DECL(E)
 
 #undef ITOR
 #undef DECL
-
 #undef U_E_F
 #undef U_E
 #undef U_O
 #undef B_E_F
 #undef B_E
 #undef B_O
-
 #undef U
 #undef B
 
