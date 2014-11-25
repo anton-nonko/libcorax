@@ -2,9 +2,11 @@
 ///\{
 
 /**
-\defgroup type_traits
+\defgroup type_traits Type Traits
 \todo Write documentation.
  */
+
+#pragma once
 
 #include <type_traits>
 #include <boost/type_traits.hpp>
