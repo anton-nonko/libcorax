@@ -33,13 +33,10 @@ html/optional/reference.html#boost_optional.reference.synopsis)
 #include "config.h"
 
 ///\cond
-#define std   1
-#define boost 2
-///\endcond
-
 #define __CORAX_OPTIONAL_BACKEND_STD   0
+#define                          std   1
 #define __CORAX_OPTIONAL_BACKEND_BOOST 0
-
+#define                          boost 2
 #if CORAX_OPTIONAL_BACKEND == std
 	#undef  __CORAX_OPTIONAL_BACKEND_STD
 	#define __CORAX_OPTIONAL_BACKEND_STD       1
@@ -58,8 +55,6 @@ html/optional/reference.html#boost_optional.reference.synopsis)
 	#error "Only `std` or `boost` may be used as CORAX_OPTIONAL_BACKEND value"
 
 #endif
-
-///\cond
 #undef boost
 #undef std
 ///\endcond

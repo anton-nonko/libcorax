@@ -52,7 +52,7 @@
 
 #ifndef CORAX_BACKTRACE_BACKEND
 	/**
-	 * Backend to use for backtrace retrieval. Available backends are:
+	Backend to use for backtrace retrieval. Available backends are:
 	- `execinfo`
 	\see CORAX_BACKTRACE
 	*/

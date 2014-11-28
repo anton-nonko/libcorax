@@ -35,8 +35,6 @@ reference.html#header.boost.any_hpp)
 ///\cond
 #define std   1
 #define boost 2
-///\endcond
-
 #if CORAX_ANY_BACKEND == std
 	#define __CORAX_ANY_BACKEND_HEADER    <any>
 	#define __CORAX_ANY_BACKEND_NAMESPACE std
@@ -49,8 +47,6 @@ reference.html#header.boost.any_hpp)
 	#error "Only 'std' or 'boost' may be used as CORAX_ANY_BACKEND value"
 
 #endif
-
-///\cond
 #undef boost
 #undef std
 ///\endcond

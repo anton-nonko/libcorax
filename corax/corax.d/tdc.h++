@@ -15,8 +15,8 @@
 
 ///\cond
 namespace corax  {
-namespace tdc    {
 namespace detail {
+namespace tdc    {
 
 /*
 Legenda:
@@ -96,14 +96,14 @@ DECL(E)
 #undef U
 #undef B
 
-}; //detail
 }; //tdc
+}; //detail
 }; //corax
 ///\endcond
 
 #define __corax_tdc(c)                                                         \
 	struct __corax_tdc_class_##c :                                               \
-		public ::corax::tdc::detail::mixin<__corax_tdc_class_##c>                  \
+		public ::corax::detail::tdc::mixin<__corax_tdc_class_##c>                  \
 	{                                                                            \
 		constexpr __corax_tdc_class_##c() = default;                               \
 		template<class T> constexpr operator T();                                  \
